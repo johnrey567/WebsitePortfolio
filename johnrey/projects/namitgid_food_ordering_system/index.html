@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#277536" />
+  <meta name="description" content="Fresh local favorites delivered to your door. Explore the Namit Gid menu and order today." />
+  <title>Namit Gid — Food Delivery</title>
+  <link rel="icon" type="image/png" href="assets/namit-gid-logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin-menu.css" />
+  <link rel="stylesheet" href="brand-polish.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Namit Gid home"><img class="brand-logo" src="assets/namit-gid-logo.png" alt="The Original Namit Gid"></a>
+    <nav class="nav-links"><a href="#menu">Menu</a><a href="#tracking" id="trackOrderNav">Track order</a><a href="#about">About</a></nav>
+    <div class="top-actions"><button class="text-btn" id="signinOpen">Sign in</button><button class="btn btn-primary" id="signupOpen">Sign up</button><button class="cart-button" id="cartOpen">🛒 <span id="cartCount">0</span></button><button class="mobile-menu" id="mobileMenu">☰</button></div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR LOCAL FOOD FAVORITES</div>
+        <h1>Your local favorites,<br><span>delivered fresh.</span></h1>
+        <p>Discover comfort food and local favorites, made with care and brought straight to your door. One bite and you’ll say <i>“namit gid!”</i></p>
+        <div class="hero-actions"><a class="btn btn-primary btn-large" href="#menu">Explore the menu <span>↗</span></a><button class="btn btn-light btn-large" id="trackOrderHero" type="button">Track my order</button></div>
+        <div class="hero-stats"><div><b>30–45 min</b><small>Average delivery</small></div><div><b>Fresh daily</b><small>Made with care</small></div><div><b>Local love</b><small>From our community</small></div></div>
+      </div>
+      <div class="hero-visual"><div class="hero-blob"></div><div class="hero-food" id="heroFood" aria-label="Featured dish">🍗</div><div class="floating-card float-top"><span>⭐</span><div><b>Made fresh daily</b><small>Local favorites, made with care</small></div></div><div class="floating-card float-bottom"><span class="mini-icon">🛵</span><div><b>At your doorstep</b><small>Track your order anytime</small></div></div><span class="sparkle s1">✦</span><span class="sparkle s2">✳</span></div>
+    </section>
+
+    <section class="trust-strip"><span>🥬 Fresh ingredients</span><span>♡ Made with care</span><span>🛵 Trackable delivery</span><span>💳 Easy checkout</span></section>
+
+    <section class="section" id="menu">
+      <div class="section-heading"><div><div class="eyebrow">MADE FOR YOUR CRAVINGS</div><h2>Find your <span>favorite.</span></h2><p>Good food, good mood. Ano ang trip mo today?</p></div><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search dishes..." aria-label="Search dishes"></div></div>
+      <div class="category-row" id="categories"><button class="category active" data-category="All">🍽️ All food</button><button class="category" data-category="Meals">🍛 Meals</button><button class="category" data-category="Snacks">🍟 Snacks</button><button class="category" data-category="Drinks">🥤 Drinks</button><button class="category" data-category="Desserts">🍰 Desserts</button></div>
+      <div class="food-grid" id="foodGrid"></div>
+    </section>
+
+    <section class="tracking-section tracking-page" id="tracking" aria-labelledby="trackingPageTitle">
+      <header class="tracking-page-header">
+        <div><small>ORDER TRACKING</small><h1 id="trackingPageTitle">Track your order</h1></div>
+        <button class="btn btn-light" id="closeTrackingPage" type="button">← Back to website</button>
+      </header>
+      <div class="tracking-page-content">
+        <div class="tracking-copy">
+          <div class="eyebrow">NO MORE “SAAN NA NA?”</div><h2>Your food journey,<br><span>step by step.</span></h2>
+          <p>Stay updated from the moment your order is confirmed until it arrives at your door.</p>
+          <div class="tracking-steps"><div class="step-icon">✓</div><div><b>Order confirmed</b><small>We got your order.</small></div><div class="step-icon">♨</div><div><b>Preparing your food</b><small>Freshly prepared by the kitchen.</small></div><div class="step-icon">🛵</div><div><b>Out for delivery</b><small>Your rider is on the way.</small></div></div>
+        </div>
+        <div class="track-card">
+          <div class="track-card-head"><div><small>ORDER TRACKING</small><h3>Where's my food?</h3></div><span class="track-pulse">● LIVE DEMO</span></div>
+          <form id="trackForm" class="track-form"><label for="orderId">Enter your order ID</label><div class="track-input-row"><input id="orderId" placeholder="e.g. NG-1001" required><button class="btn btn-primary" type="submit">Track order</button></div></form>
+          <div id="trackingResult" class="tracking-result"><div class="empty-track">🛵<b>Your next delicious moment is close.</b><span>Place an order to see its tracking updates here.</span></div></div>
+          <div class="map-placeholder"><div class="map-grid"></div><span class="map-pin pin-a">📍</span><span class="map-pin pin-b">🏠</span><span class="route-line"></span><div class="map-label">DELIVERY ROUTE PREVIEW</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner" id="about"><div><div class="eyebrow">GOOD FOOD IS BETTER SHARED</div><h2>Your next favorite meal is waiting.</h2><p>Order local. Eat happy. Namit gid!</p></div><a class="btn btn-dark btn-large" href="#menu">Explore the menu ↗</a></section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#home" aria-label="Namit Gid home"><img class="brand-logo" src="assets/namit-gid-logo.png" alt="The Original Namit Gid"></a><span>© 2026 Namit Gid Food Delivery</span><div><a href="#menu">Menu</a><a href="#tracking" id="trackOrderFooter">Order tracking</a><button id="adminOpen">Admin dashboard</button></div></footer>
+
+  <div class="overlay" id="modalOverlay"></div>
+  <section class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><button class="modal-close" data-close>×</button><div class="modal-icon">🍲</div><div class="eyebrow">WELCOME TO NAMIT GID</div><h2 id="authTitle">Good to see you!</h2><p id="authSubtitle">Sign in to order your favorites.</p><form id="authForm"><label for="authName" id="nameLabel" class="hidden">Full name</label><input id="authName" class="hidden" placeholder="Your full name"><label for="authEmail">Email address</label><input id="authEmail" type="email" placeholder="you@example.com" required><label for="authPassword">Password</label><input id="authPassword" type="password" placeholder="At least 6 characters" minlength="6" required><button class="btn btn-primary full-btn" id="authSubmit" type="submit">Sign in</button></form><p class="switch-auth"><span id="switchText">New here?</span> <button id="authSwitch">Create an account</button></p><button class="admin-signin-shortcut" id="adminSignInShortcut" type="button">Admin? Open the admin dashboard</button><p class="demo-note">Demo only: account details stay in this browser.</p></section>
+
+  <aside class="side-panel" id="cartPanel"><div class="panel-head"><div><small>YOUR ORDER</small><h2>Your food bag</h2></div><button class="modal-close" data-close>×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-bottom"><div class="total-row"><span>Subtotal</span><b id="cartTotal">₱0.00</b></div><button id="checkoutBtn" class="btn btn-primary full-btn">Checkout · ₱0.00</button><small>Delivery fee calculated at checkout.</small></div></aside>
+
+  <section class="modal wide-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><button class="modal-close" data-close>×</button><div class="eyebrow">ALMOST THERE</div><h2 id="checkoutTitle">Delivery details</h2><p>Where should we bring your delicious order?</p><form id="checkoutForm" class="checkout-form"><label for="deliveryName">Full name</label><input id="deliveryName" required placeholder="Name of receiver"><label for="deliveryPhone">Mobile number</label><input id="deliveryPhone" required type="tel" placeholder="09XX XXX XXXX"><label for="deliveryAddress">Complete delivery address</label><textarea id="deliveryAddress" required placeholder="House number, street, barangay..." rows="3"></textarea><label for="paymentMethod">Payment method</label><select id="paymentMethod"><option>Cash on Delivery</option><option>GCash (demo)</option></select><div class="total-row"><span>Total</span><b id="checkoutTotal">₱0.00</b></div><button class="btn btn-primary full-btn" type="submit">Place order</button></form></section>
+
+  <section class="admin-view" id="adminView">
+    <aside class="admin-sidebar">
+      <a class="brand admin-brand" href="#home" aria-label="Namit Gid admin portal"><img class="brand-logo" src="assets/namit-gid-logo.png" alt="The Original Namit Gid"><small>ADMIN PORTAL</small></a>
+      <button class="admin-nav active" id="adminOverviewNav">▦ &nbsp; Overview</button>
+      <button class="admin-nav" id="adminOrdersNav">☷ &nbsp; Orders</button>
+      <button class="admin-nav" id="adminMenuNav">🍽 &nbsp; Menu items</button>
+      <button class="admin-nav" id="adminCustomersNav">♙ &nbsp; Customers</button>
+      <button class="admin-nav" id="backToSite">↗ &nbsp; View website</button>
+      <div class="admin-sidebar-bottom"><span class="admin-avatar">A</span><span><b>Administrator</b><small>Store management</small></span></div>
+    </aside>
+    <main class="admin-main">
+      <section class="admin-page active" id="adminOverviewPage">
+        <div class="admin-top"><div><small>STORE MANAGEMENT / OVERVIEW</small><h1>Dashboard overview</h1><p>Here's what's happening with your food business.</p></div><button class="btn btn-primary" id="refreshAdmin">↻ Refresh data</button></div>
+        <div class="admin-stats">
+          <div class="stat-card"><span>Today's orders</span><b id="statOrders">0</b><small>All customer orders</small></div>
+          <div class="stat-card"><span>Revenue</span><b id="statRevenue">₱0</b><small>From placed orders</small></div>
+          <div class="stat-card"><span>In progress</span><b id="statProgress">0</b><small>Being prepared or delivered</small></div>
+          <div class="stat-card"><span>Menu items</span><b id="statMenu">8</b><small>Available dishes</small></div>
+        </div>
+        <div class="sales-chart-card">
+          <div class="sales-chart-heading"><div><h2>Sales overview</h2><p>Daily revenue from the last 7 days</p></div><span class="sales-chart-key"><i></i> Sales</span></div>
+          <div class="sales-chart-wrap"><svg id="salesChart" role="img" aria-label="Sales chart for the last seven days" viewBox="0 0 760 260" preserveAspectRatio="none"></svg></div>
+          <p class="sales-chart-summary" id="salesChartSummary">Sales are based on orders saved in this browser.</p>
+        </div>
+        <div class="admin-hint">Demo dashboard: order data is stored in this browser only. Connect a secure backend and database before using this for a real business.</div>
+      </section>
+      <section class="admin-page" id="adminOrdersPage">
+        <div class="admin-top"><div><small>STORE MANAGEMENT / ORDERS</small><h1>Orders</h1><p>View all customer orders and update their status.</p></div><span class="status-pill">● LOCAL DATA</span></div>
+        <div class="admin-table-card"><div class="table-heading"><div><h2>All orders</h2><p>Manage orders and keep customers updated.</p></div></div><div class="table-scroll"><table><thead><tr><th>ORDER ID</th><th>CUSTOMER</th><th>ORDER DETAILS</th><th>TOTAL</th><th>STATUS</th><th>UPDATE STATUS</th></tr></thead><tbody id="adminOrderRows"></tbody></table></div><div id="adminEmpty" class="admin-empty hidden">No orders yet. Place a test order on the website to see it here.</div></div>
+      </section>
+      <section class="admin-page admin-menu-page" id="adminMenuPage">
+        <div class="admin-top"><div><small>STORE MANAGEMENT / MENU ITEMS</small><h1>Manage food menu</h1><p>Add dishes or edit their details and photos.</p></div><button class="btn btn-primary" id="addFoodButton" type="button">+ Add food</button></div>
+        <form id="foodForm" class="food-editor hidden">
+          <h3 id="foodEditorTitle">Add food</h3><input id="foodId" type="hidden">
+          <div class="food-editor-grid">
+            <div><label for="foodName">Food name</label><input id="foodName" maxlength="60" required></div>
+            <div><label for="foodCategory">Category</label><select id="foodCategory" required><option>Meals</option><option>Snacks</option><option>Drinks</option><option>Desserts</option></select></div>
+            <div><label for="foodPrice">Price (₱)</label><input id="foodPrice" type="number" min="1" step="0.01" required></div>
+            <div><label for="foodImageInput">Food photo</label><input id="foodImageInput" type="file" accept="image/*"><small>Image will be resized before saving.</small></div>
+            <div class="food-editor-preview" id="foodImagePreview" aria-label="Food image preview">🍽️</div>
+            <div class="food-editor-description"><label for="foodDescription">Description</label><textarea id="foodDescription" maxlength="180" rows="3" required></textarea></div>
+          </div>
+          <div class="food-editor-actions"><button class="btn btn-light" id="cancelFoodEdit" type="button">Cancel</button><button class="btn btn-primary" type="submit">Save food</button></div>
+        </form>
+        <div id="adminMenuRows" class="admin-menu-rows"></div>
+        <p class="demo-note">Menu edits and photos are saved in this browser only. To share updates across devices, connect a server/database.</p>
+      </section>
+      <section class="admin-page" id="adminCustomersPage"><div class="admin-top"><div><small>STORE MANAGEMENT / CUSTOMERS</small><h1>Customers</h1><p>Registered demo accounts in this browser.</p></div></div><div class="stat-card"><span>Registered customers</span><b id="statCustomers">0</b><small>Customer demo accounts</small></div></section>
+    </main>
+    <button class="admin-exit" id="adminExit" aria-label="Close admin dashboard">✕</button>
+  </section>
+
+  <div class="toast" id="toast" role="status"></div>
+  <section class="modal" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+    <button class="modal-close" data-close aria-label="Close admin sign in">×</button>
+    <div class="eyebrow">STORE MANAGEMENT</div>
+    <h2 id="adminLoginTitle">Admin sign in</h2>
+    <p>Sign in to open the store dashboard.</p>
+    <form id="adminLoginForm">
+      <label for="adminEmail">Admin email</label>
+      <input id="adminEmail" type="email" autocomplete="username" value="admin@namitgid.com" required>
+      <label for="adminPassword">Password</label>
+      <input id="adminPassword" type="password" autocomplete="current-password" value="NamitAdmin2026!" required>
+      <button class="btn btn-primary full-btn" type="submit">Sign in</button>
+    </form>
+    <p class="demo-note">Demo credentials: admin@namitgid.com / NamitAdmin2026!</p>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

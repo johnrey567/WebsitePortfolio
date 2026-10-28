@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveRent — Car Rental</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.renter-details-modal{width:min(580px,100%);max-height:90vh;overflow-y:auto}.renter-detail-profile{display:flex;align-items:center;gap:16px;margin:20px 0}.renter-detail-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;background:#d8eaff;color:#0874e8;display:grid;place-items:center;font-size:24px;font-weight:800}.renter-detail-profile b,.renter-detail-profile small{display:block}.renter-detail-profile small{color:var(--muted);margin-top:5px}.renter-detail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}.renter-detail-list div{padding:12px;border:1px solid var(--line);border-radius:8px;overflow-wrap:anywhere}.renter-detail-list dt{font-size:10px;color:var(--muted);margin-bottom:5px}.renter-detail-list dd{margin:0;font-size:13px;font-weight:700}.admin-sidebar~.dashboard-main #adminContent tbody tr{cursor:pointer}.admin-sidebar~.dashboard-main #adminContent tbody tr:hover{background:#f5f9fd}@media(max-width:520px){.renter-detail-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" data-view="home"><span class="brand-icon">🚘</span> Drive<span>Rent</span></a>
+  <nav id="mainNav">
+    <a href="#" data-view="home">Home</a><a href="#" data-view="cars">Cars</a><a href="#how">How it works</a><a id="myBookingsNav" class="hidden" href="#" data-view="customer" data-tab="mybookings">My bookings</a>
+  </nav>
+  <div class="top-actions" id="topActions"></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+</header>
+
+<main>
+<section id="homeView" class="view active">
+  <div class="hero">
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+      <h1>Drive your<br><span>next adventure.</span></h1>
+      <p class="hero-copy">Find the right ride for your next trip. Easy booking, fair prices, and a smoother way to get there.</p>
+      <button class="btn primary large" data-view="cars">Explore available cars <span>→</span></button>
+    </div>
+    <div class="hero-note"><span class="live-dot"></span> Your next ride is just a few clicks away</div>
+  </div>
+  <div class="search-panel">
+    <div class="field"><label>Pickup date</label><input id="homePickup" type="date"></div>
+    <div class="field"><label>Return date</label><input id="homeReturn" type="date"></div>
+    <div class="field"><label>Pickup location</label><select id="homeLocation"><option>Manila</option><option>Makati</option><option>Quezon City</option><option>Pasig</option><option>Other / To be arranged</option></select></div>
+    <button class="btn primary" id="homeSearch">Search cars <span>→</span></button>
+  </div>
+  <section class="section">
+    <div class="section-heading"><div><p class="eyebrow">PICK YOUR RIDE</p><h2>Popular cars</h2></div><button class="text-btn" data-view="cars">View all cars →</button></div>
+    <div class="car-grid" id="featuredCars"></div>
+  </section>
+  <section class="how-section" id="how">
+    <p class="eyebrow">SIMPLE FROM START TO FINISH</p><h2>Rent a car in 3 easy steps</h2>
+    <div class="steps"><article><div class="step-num">01</div><h3>Choose your car</h3><p>Browse available vehicles and find the ride that fits your plans.</p></article><article><div class="step-num">02</div><h3>Book your dates</h3><p>Select your pickup and return dates and preferred payment method.</p></article><article><div class="step-num">03</div><h3>Get approved</h3><p>Track your request and wait for the rental admin to confirm it.</p></article></div>
+  </section>
+</section>
+
+<section id="carsView" class="view page-view">
+  <div class="page-heading"><div><p class="eyebrow">FIND YOUR RIDE</p><h1>Available cars</h1><p>Choose a vehicle for your next trip.</p></div><div class="field search-field"><label>Search</label><input id="carSearch" placeholder="Search make or model..."></div></div>
+  <div class="filter-row"><span id="carCount">6 vehicles</span><select id="typeFilter"><option value="All">All vehicle types</option><option>Sedan</option><option>SUV</option><option>MPV</option><option>Pickup</option></select><select id="sortFilter"><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+  <div class="car-grid" id="allCars"></div>
+</section>
+
+<section id="authView" class="view auth-view">
+  <div class="auth-art"><div class="brand light"><span class="brand-icon">🚘</span> Drive<span>Rent</span></div><div class="auth-art-copy"><p class="eyebrow">THE ROAD IS YOURS</p><h2>Good trips<br>start with a<br><span>great ride.</span></h2><p>Simple rentals. More freedom.</p></div><div class="auth-art-bottom">DRIVERENT · YOUR RIDE, YOUR PRIORITY</div></div>
+  <div class="auth-form-wrap">
+    <form id="customerLoginForm" class="auth-form">
+      <p class="eyebrow">DRIVERENT ACCOUNT</p><h1>Sign in</h1><p class="muted">Sign in to continue to your DriveRent account.</p>
+      <label>Email address</label><input name="email" type="email" placeholder="you@example.com" required>
+      <label>Password</label><input name="password" type="password" placeholder="Enter your password" required>
+      <button class="btn primary full" type="submit">Sign in</button>
+      <p class="switch-auth">Don't have an account? <button type="button" class="link-btn" id="showSignup">Sign up</button></p>
+    </form>
+    <form id="signupForm" class="auth-form hidden">
+      <p class="eyebrow">JOIN DRIVERENT</p><h1>Create account</h1><p class="muted">Start planning your next drive.</p>
+      <label>Full name</label><input name="name" placeholder="Juan Dela Cruz" required>
+      <label>Email address</label><input name="email" type="email" placeholder="you@example.com" required>
+      <label>Mobile number</label><input name="phone" type="tel" placeholder="09XX XXX XXXX" required>
+      <label>Password</label><input name="password" type="password" minlength="6" placeholder="At least 6 characters" required>
+      <button class="btn primary full" type="submit">Create account</button>
+      <p class="switch-auth">Already have an account? <button type="button" class="link-btn" id="showLogin">Sign in</button></p>
+    </form>
+  </div>
+</section>
+
+<section id="customerView" class="view page-view customer-page">
+  <div class="page-heading"><div><p class="eyebrow" id="customerEyebrow">RENTER ACCOUNT</p><h1 id="customerGreeting">My bookings</h1><p class="muted" id="customerDescription"></p></div></div>
+  <div id="customerContent"></div>
+</section>
+
+<section id="adminView" class="view dashboard-layout">
+  <aside class="sidebar admin-sidebar">
+    <a class="brand light" href="#" data-view="home"><span class="brand-icon">🚘</span> Drive<span>Rent</span></a>
+    <div class="profile-mini"><div class="avatar admin-avatar">A</div><div><b>Administrator</b><small>Management portal</small></div></div>
+    <button class="side-link selected" data-admin-tab="overview">▦ &nbsp; Dashboard</button><button class="side-link" data-admin-tab="requests">▣ &nbsp; Booking requests <span class="side-count" id="pendingCount">0</span></button><button class="side-link" data-admin-tab="fleet">🚘 &nbsp; Manage cars</button><button class="side-link" data-admin-tab="renters">♙ &nbsp; Renters</button><button class="side-link" data-admin-tab="payments">₱ &nbsp; Payments</button><button class="side-link logout" id="adminLogout">↪ &nbsp; Sign out</button>
+  </aside>
+  <div class="dashboard-main">
+    <div class="dash-top"><div><p class="eyebrow">ADMINISTRATION</p><h1 id="adminTitle">Dashboard overview</h1><p class="muted">Manage rentals, vehicles, and customer requests.</p></div><span class="admin-pill">● Admin access</span></div>
+    <div id="adminContent"></div>
+  </div>
+</section>
+</main>
+
+<div class="modal-backdrop hidden" id="bookingModal">
+  <div class="modal">
+    <button class="modal-close" id="closeModal">×</button><p class="eyebrow">RESERVE YOUR RIDE</p><h2 id="bookingTitle">Book a car</h2><p class="muted">Choose your rental period and payment method.</p>
+    <form id="bookingForm">
+      <input type="hidden" name="carId" id="bookingCarId">
+      <div class="form-two"><div><label>Pickup date</label><input name="pickup" id="pickupDate" type="date" required></div><div><label>Pickup time</label><input name="pickupTime" type="time" value="09:00" required></div></div>
+      <div class="form-two"><div><label>Return date</label><input name="return" id="returnDate" type="date" required></div><div><label>Return time</label><input name="returnTime" type="time" value="09:00" required></div></div>
+      <label>Pickup location</label><select name="location" required><option>Manila</option><option>Makati</option><option>Quezon City</option><option>Pasig</option><option>To be arranged</option></select>
+      <label>Payment method</label><div class="payment-options"><label class="payment-option"><input type="radio" name="payment" value="GCash" checked><span class="pay-icon gcash">G</span><span><b>GCash</b><small>Pay using GCash</small></span></label><label class="payment-option"><input type="radio" name="payment" value="Bank Transfer"><span class="pay-icon bank">₱</span><span><b>Bank transfer</b><small>Transfer from your bank</small></span></label><label class="payment-option"><input type="radio" name="payment" value="Cash on Delivery (COD)"><span class="pay-icon cash">₱</span><span><b>Cash on delivery</b><small>Pay in cash as arranged</small></span></label></div>
+      <div class="price-summary"><span>Estimated total</span><strong id="bookingTotal">₱0</strong></div><p class="tiny-note">Your booking will be sent to the admin for approval. Online payment is not processed by this demo.</p>
+      <button class="btn primary full" type="submit">Submit rental request →</button>
+    </form>
+  </div>
+</div>
+<div class="modal-backdrop hidden" id="renterDetailsModal" role="dialog" aria-modal="true" aria-labelledby="renterDetailsTitle">
+  <div class="modal renter-details-modal">
+    <button class="modal-close" id="closeRenterDetails" aria-label="Close renter details">×</button>
+    <p class="eyebrow">RENTER VERIFICATION</p>
+    <h2 id="renterDetailsTitle">Renter details</h2>
+    <div id="renterDetailsContent"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<footer><div class="brand"><span class="brand-icon">🚘</span> Drive<span>Rent</span></div><p>Make every trip a good one.</p><small>© 2026 DriveRent. Demo website.</small></footer>
+<script src="script.js"></script>
+</body>
+</html>
